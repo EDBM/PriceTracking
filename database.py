@@ -59,3 +59,23 @@ class Database:
             session.commit()
         finally:
             session.close()
+
+    def get_price_history(self, url):
+        """Get price history for a product"""
+        session = self.Session()
+        try:
+            return (
+                session.query(PriceHistory)
+                .filter(PriceHistory.product_url == url)
+                .order_by(PriceHistory.timestamp.desc())
+                .all()
+            )
+        finally:
+            session.close()
+
+    def get_all_products(self):
+        session = self.Session()
+        try:
+            return session.query(Product).all()
+        finally:
+            session.close()
