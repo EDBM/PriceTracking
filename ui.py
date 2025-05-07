@@ -89,4 +89,4 @@ for product in products:
                 )
                 fig.update_xaxes(tickformat="%Y-%m-%d %H:%M", tickangle=45)
                 fig.update_yaxes(tickprefix=f"{price_history[0].currency} ", tickformat=".2f")
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key=product.url)
