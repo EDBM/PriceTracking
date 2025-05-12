@@ -63,7 +63,7 @@ class ProductService:
         )
         product_data = data["extract"]
         product_data["url"] = url  # Use original URL
-        product_data["check_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        product_data["check_date"] = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         return ProductCreate(**product_data)
 
     def remove_product(self, url: str) -> None:

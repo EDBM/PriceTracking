@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, Boolean
 from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 from urllib.parse import urlparse
@@ -15,8 +15,8 @@ class Product(Base):
     price = Column(Float)
     currency = Column(String)
     full_price = Column(Float)
-    on_sale = Column(String)
-    has_member_price = Column(String)
+    on_sale = Column(Boolean)
+    has_member_price = Column(Boolean)
     member_price = Column(Float)
     check_date = Column(String)
     main_image_url = Column(String)

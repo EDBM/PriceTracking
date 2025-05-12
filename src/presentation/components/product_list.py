@@ -46,22 +46,27 @@ class ProductList:
                     # Show current price
                     latest_price = price_history[-1].price
                     col3.metric("Current Price", f"{latest_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{latest_price - price_history[-2].price:.2f} {self.product_service.repository.get(product.url).currency}" if len(price_history) > 1 else "N/A", delta_color="inverse")
-                else:
-                    col2.info("No price history available")
-
-                    #Show if product is on sale and if so, show the price and the full price, if member price is available distinguish between member price and full price and sale price
-                    if product.sale_price:
+                    # Show if product is on sale and if so, show the price and the full price, if member price is available distinguish between member price and full price and sale price
+                    if self.product_service.repository.get(product.url).on_sale is True:
                         col2.success("Product is on sale!")
-                        col3.metric("Sale Price", f"{product.sale_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.sale_price - product.full_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.full_price else "N/A", delta_color="inverse")
+                        col3.metric("Sale Price",
+                                    f"{self.product_service.repository.get(product.url).price:.2f} {self.product_service.repository.get(product.url).currency}",
+                                    delta=f"{self.product_service.repository.get(product.url).price - self.product_service.repository.get(product.url).full_price:.2f} {self.product_service.repository.get(product.url).currency}" if self.product_service.repository.get(product.url).full_price else "N/A",
+                                    delta_color="inverse")
                     else:
                         col2.error("Product is not on sale")
-                        #col3.metric("Full Price", f"{product.full_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.full_price - product.sale_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.sale_price else "N/A", delta_color="inverse")
+                        # col3.metric("Full Price", f"{product.full_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.full_price - product.sale_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.sale_price else "N/A", delta_color="inverse")
                     # Show if product has member price and if so, show the price
-                    if product.has_member_price:
+                    if self.product_service.repository.get(product.url).has_member_price is True:
                         col2.success("Product has member price!")
-                        col3.metric("Member Price", f"{product.member_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.member_price - product.full_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.full_price else "N/A", delta_color="inverse")
+                        col3.metric("Member Price",
+                                    f"{self.product_service.repository.get(product.url).member_price:.2f} {self.product_service.repository.get(product.url).currency}",
+                                    delta=f"{self.product_service.repository.get(product.url).member_price - self.product_service.repository.get(product.url).full_price:.2f} {self.product_service.repository.get(product.url).currency}" if self.product_service.repository.get(product.url).full_price else "N/A",
+                                    delta_color="inverse")
                     else:
                         col2.error("Product does not have member price")
+                else:
+                    col2.info("No price history available")
 
 
 
