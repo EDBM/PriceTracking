@@ -83,6 +83,14 @@ class ProductRepository(BaseRepository[Product]):
             db_product.name = product.name
             db_product.currency = product.currency
             db_product.main_image_url = product.main_image_url
+            # add  on_sale, full_price and member_price if they exist
+            db_product.on_sale = product.on_sale
+            if product.on_sale:
+                db_product.full_price = product.full_price
+                db_product.member_price = product.member_price
+            else:
+                db_product.full_price = None
+                db_product.member_price = None
             db_product.check_date = datetime.now().isoformat()
             self.session.commit()
             return product

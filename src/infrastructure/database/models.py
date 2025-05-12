@@ -14,6 +14,9 @@ class Product(Base):
     name = Column(String)
     price = Column(Float)
     currency = Column(String)
+    full_price = Column(Float)
+    on_sale = Column(String)
+    member_price = Column(Float)
     check_date = Column(String)
     main_image_url = Column(String)
 
