@@ -11,6 +11,9 @@ class ProductCreate(BaseModel):
     name: str = Field(description="The product name/title")
     price: float = Field(description="The current price of the product")
     currency: str = Field(description="Currency code (USD, EUR, DKK, kr etc)")
+    on_sale: bool = Field(description="Whether the product is on sale")
+    full_price: Optional[float] = Field(default=None, description="The normal price of the product")
+    member_price: Optional[float] = Field(default=None, description="The member price of the product")
     main_image_url: str = Field(description="The URL of the main image of the product")
     check_date: str
 

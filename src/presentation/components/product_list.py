@@ -49,6 +49,13 @@ class ProductList:
                 else:
                     col2.info("No price history available")
 
+                    #Show if product is on sale and if so, show the price and the full price
+                    if product.on_sale:
+                        col2.markdown(f"**On Sale!** Price: {product.price:.2f} {product.currency} (Full Price: {product.full_price:.2f} {product.currency})")
+                    else:
+                        col2.markdown(f"**Price:** {product.price:.2f} {product.currency}")
+
+
                 # Add visit product button
                 col3.link_button("Visit Product", product.url)
 
