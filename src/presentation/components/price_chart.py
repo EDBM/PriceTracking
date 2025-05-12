@@ -11,6 +11,6 @@ class PriceChart:
             margin=dict(l=0, r=0, t=0, b=0),
             height=300,
         )
-        fig.update_xaxes(tickformat="%Y-%m-%d %H:%M", tickangle=45)
+        fig.update_xaxes(tickformat="%d-%m-%Y %H:%M", tickangle=45)
         fig.update_yaxes(tickprefix="", tickformat=".2f")
         return fig
