@@ -37,7 +37,7 @@ class ProductService:
 
             return (
                 True,
-                f"Added and checked initial price for: {product.name} - ${product.price:.2f}",
+                f"Added and checked initial price for: {product.name} - {product.currency}{product.price:.2f}",
             )
 
         except Exception as e:

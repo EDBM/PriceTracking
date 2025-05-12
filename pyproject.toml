@@ -2,7 +2,7 @@
 name = "automated_price_tracking"
 version = "0.1.0"
 description = ""
-authors = ["BexTuychiev <bex@ibexprogramming.com>"]
+authors = ["EDBM <>"]
 readme = "README.md"
 packages = [{include = "src"}]
 package-mode = true
