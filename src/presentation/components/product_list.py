@@ -45,7 +45,7 @@ class ProductList:
 
                     # Show current price
                     latest_price = price_history[-1].price
-                    col3.metric("Current Price", f"{self.product_service.repository.get(product.url).currency}{latest_price:.2f}", delta=None)
+                    col3.metric("Current Price", f"{latest_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=None)
                 else:
                     col2.info("No price history available")
 
