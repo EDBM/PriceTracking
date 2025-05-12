@@ -16,6 +16,7 @@ class Product(Base):
     currency = Column(String)
     full_price = Column(Float)
     on_sale = Column(String)
+    has_member_price = Column(String)
     member_price = Column(Float)
     check_date = Column(String)
     main_image_url = Column(String)

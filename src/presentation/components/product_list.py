@@ -49,11 +49,20 @@ class ProductList:
                 else:
                     col2.info("No price history available")
 
-                    #Show if product is on sale and if so, show the price and the full price
-                    if product.on_sale:
-                        col2.markdown(f"**On Sale!** Price: {product.price:.2f} {product.currency} (Full Price: {product.full_price:.2f} {product.currency})")
+                    #Show if product is on sale and if so, show the price and the full price, if member price is available distinguish between member price and full price and sale price
+                    if product.sale_price:
+                        col2.success("Product is on sale!")
+                        col3.metric("Sale Price", f"{product.sale_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.sale_price - product.full_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.full_price else "N/A", delta_color="inverse")
                     else:
-                        col2.markdown(f"**Price:** {product.price:.2f} {product.currency}")
+                        col2.error("Product is not on sale")
+                        #col3.metric("Full Price", f"{product.full_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.full_price - product.sale_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.sale_price else "N/A", delta_color="inverse")
+                    # Show if product has member price and if so, show the price
+                    if product.has_member_price:
+                        col2.success("Product has member price!")
+                        col3.metric("Member Price", f"{product.member_price:.2f} {self.product_service.repository.get(product.url).currency}", delta=f"{product.member_price - product.full_price:.2f} {self.product_service.repository.get(product.url).currency}" if product.full_price else "N/A", delta_color="inverse")
+                    else:
+                        col2.error("Product does not have member price")
+
 
 
                 # Add visit product button
