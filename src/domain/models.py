@@ -12,7 +12,7 @@ class ProductCreate(BaseModel):
     price: float = Field(description="The current price of the product")
     currency: str = Field(description="Currency code (USD, EUR, DKK, kr etc)")
     on_sale: bool = Field(default=False, description="Is the product on sale?")
-    full_price: Optional[float] = Field(default=None, description="The normal price of the product, if applicable")
+    full_price: Optional[float] = Field(default=None, description="The normal/non-member price of the product, if applicable")
     has_member_price: bool = Field(default=False, description="Does the product have a member price?, if applicable, otherwise make it False")
     member_price: Optional[float] = Field(default=None, description="The member price of the product, if applicable")
     main_image_url: str = Field(description="The URL of the main image of the product")
